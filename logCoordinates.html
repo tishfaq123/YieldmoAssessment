@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+     <script>
+        
+
+$("document").ready(function() {   
+    let x;
+         let y;
+     
+            function readMouseMove(e){
+                var result_x = document.getElementById('x_result');
+                var result_y = document.getElementById('y_result');
+                result_x.innerHTML = e.clientX;
+                result_y.innerHTML = e.clientY;
+                x= e.clientX;
+                y = e.clientY;
+                let data = {mouseX: x, mouseY: y};
+                alert(data.mouseX, data.mouseY);
+            jQuery.post({
+              type: 'POST',
+              url: "https://jsonplaceholder.typicode.com/posts",
+              data: data
+          });
+               
+        }  
+    setInterval(function(){
+    document.onmousemove = readMouseMove;
+        
+    }, 250);
+});  
+    </script>
+
+    <body>
+        <h1>X Coordinate: </h1>
+        <h2 id="x_result">0</h2>
+        <h1>Y Coordinate: </h1>
+        <h2 id="y_result">0</h2>
+    </body>
+
+
+
+</head>
+</html>
